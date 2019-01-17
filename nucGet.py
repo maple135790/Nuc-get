@@ -2,6 +2,7 @@ def getNuc(file,start,end):
     return file[start:end]
 
 def posDictCreate(posFilename):
+    posDict =dict()
     with open(posFilename,"r") as pfr:
         k =pfr.read()
         k =k.splitlines()
@@ -11,13 +12,13 @@ def posDictCreate(posFilename):
     return posDict
 
 if __name__ == "__main__":
-    posDict =dict()
     srcFile ="aa.fa"
     posFile ="pos.txt"
     posDict =posDictCreate(posFile)
 
     with open(srcFile,"r") as sfr:
+        storeList =list()
         k =sfr.read()
         for start,end in posDict.items():
             sat =getNuc(k,int(start),int(end))
-            print(sat)
+            storeList.append(sat)
